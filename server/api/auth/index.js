@@ -4,3 +4,4 @@ var controller = require('./auth.controller.js');
 module.exports = router;
 
 router.get('/', controller.index);
+router.get('/callback', controller.callback);
