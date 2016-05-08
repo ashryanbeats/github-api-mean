@@ -7,7 +7,7 @@ module.exports = {
 }
 
 function index (req, res, next) {
-  res.send("hai")
+  res.send('index');
 }
 
 function callback (req, res, next) {
@@ -26,15 +26,12 @@ function callback (req, res, next) {
     json: true
   };
 
-  console.log(options)
-
   request(options)
     .then(function(data) {
-      console.log("DATA", data);
-      res.send(data);
+      res.cookie('access_token', data.access_token)
+      res.redirect('/');
     })
     .catch(function(err) {
-      console.error('Error: /api/auth/callback');
       res.send(err);
     });
 }
