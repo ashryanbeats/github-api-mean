@@ -2,8 +2,11 @@
 	<h1>Meaniscule: User</h1>
 	
 	<button class="btn" ng-click="getUserData()">Get user data</button>
-
+	<button class="btn" ng-click="getUserRepos()">Get user repos</button>
+	<p>{{ errorMessage }}</p>
 	<p>{{name}}</p>
 	<p>{{company}}</p>
+
+	<p ng-repeat="repo in repos">{{repo.name}}</p>
 
 </section>
