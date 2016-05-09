@@ -1,13 +1,18 @@
-app.controller('UserController', function($scope, $http, UserFactory) {
+app.controller('UserController', function($scope, $http, $cookies, UserFactory) {
 
 	$scope.getUserData = function() {
-		UserFactory.getUserData()
-			.then(function(data) {
-				console.log(data);
+		let access_token = $cookies.get('access_token');
 
-				$scope.name = data.name;
-				$scope.company = data.company;
-			});
+		if (access_token) {
+			UserFactory.getUserData(access_token)
+				.then(function(data) {
+					$scope.name = data.name;
+					$scope.company = data.company;
+				});
+		}
+		else {
+			$scope.name = "Log into GitHub first";
+		}
 	}
 
 });
