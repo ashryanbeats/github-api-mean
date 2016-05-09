@@ -1,6 +1,11 @@
 <section id="home">
 	<h1>Meaniscule</h1>
-	<p><a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=5785ae4a8a58fa8e8837">Click here for GitHub fun</a>.</p>
+
+	{{ loginButton }}
+	{{ logoutButton }}
+
+	<a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=5785ae4a8a58fa8e8837" ng-if="!loggedIn"><button class="btn">Click here for GitHub fun</button></a>
+	<button class="btn" ng-if="loggedIn" ng-click="logOut()">Log out of GitHub</button>
 
 	<!-- <button class="btn" ng-click="getData()">GitHub</button> -->
 </section>
