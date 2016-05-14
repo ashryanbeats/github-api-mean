@@ -73,7 +73,20 @@ function commits(req, res, next) {
 
   request(options)
     .then(function(data) {
-      res.send(data);
+
+      function hasCommit(obj) {
+        if (obj.payload.commits) {
+          return true;
+        }
+      }
+
+      // data.forEach(function(e) {
+      //   if (e.payload.commits) {
+      //     console.log(!!e.payload.commits);
+      //   }
+      // })
+
+      res.send(data.filter(hasCommit));
     })
     .catch(function(err) {
       res.send(err);
