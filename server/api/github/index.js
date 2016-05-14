@@ -5,3 +5,4 @@ module.exports = router;
 
 router.get('/user', controller.user);
 router.get('/user/repos', controller.repos);
+router.get('/user/commits', controller.commits);

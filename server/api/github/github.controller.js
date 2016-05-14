@@ -3,7 +3,8 @@ const request = require('request-promise');
 module.exports = {
   index: index,
   user: user,
-  repos: repos
+  repos: repos,
+  commits: commits
 }
 
 function index (req, res, next) {
@@ -40,6 +41,29 @@ function repos (req, res, next) {
     uri: req.query.repos_url,
     qs: {
       access_token: req.query.access_token  
+    },
+    headers: {
+      'User-Agent': 'github-api-test-mean'
+    },
+    json: true
+  };
+
+  request(options)
+    .then(function(data) {
+      res.send(data);
+    })
+    .catch(function(err) {
+      res.send(err);
+    });
+}
+
+function commits(req, res, next) {
+
+  let options = {
+    method: 'GET',
+    uri: 'https://api.github.com/users/' + req.query.username + '/events',
+    qs: {
+      access_token: req.query.access_token
     },
     headers: {
       'User-Agent': 'github-api-test-mean'

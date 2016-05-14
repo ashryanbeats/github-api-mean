@@ -11,6 +11,7 @@ app.controller('UserController', function($scope, $http, $cookies, UserFactory) 
 					console.log(data);
 					
 					$scope.name = data.name;
+					$scope.username = data.login;
 					$scope.company = data.company;
 					$scope.repos_url = data.repos_url;
 					$scope.errorMessage = "";
@@ -38,6 +39,20 @@ app.controller('UserController', function($scope, $http, $cookies, UserFactory) 
 		else {
 			$scope.errorMessage = "Log into GitHub first";
 		}
+	}
+
+	$scope.getUserCommits = function() {
+
+		if ($scope.loggedIn) {
+			UserFactory.getUserCommits($scope.access_token, $scope.username)
+				.then(function(data) {
+					console.log(data);
+				});
+		}
+		else {
+			$scope.errorMessage = "Log into GitHub first";
+		}
+
 	}
 
 });
