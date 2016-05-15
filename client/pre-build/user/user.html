@@ -21,7 +21,12 @@
 
 		<div class="col-md-8">
 			<div ng-repeat="commitEvent in commitEvents">
-				<h2><a href="{{ 'https://github.com/' + commitEvent.repo.name }}">{{commitEvent.repo.name}}</a></h2>
+				<h2>
+					<a href="{{ gitHubDomain + commitEvent.repo.name }}">
+						{{commitEvent.repo.name}}
+					</a>
+				</h2>
+				
 				<p ng-repeat="commit in commitEvent.payload.commits">
 					{{commit.message}}
 				</p>

@@ -3,6 +3,8 @@ app.controller('UserController', function($scope, $http, $cookies, UserFactory) 
 	$scope.access_token = $cookies.get('access_token');
 	$scope.loggedIn = $scope.access_token ? true : false;
 
+	$scope.gitHubDomain = 'https://github.com/';
+
 	$scope.getUserData = function() {
 		
 		if ($scope.loggedIn) {
