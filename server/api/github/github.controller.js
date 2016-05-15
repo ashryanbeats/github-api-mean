@@ -61,7 +61,7 @@ function commits(req, res, next) {
 
   let options = {
     method: 'GET',
-    uri: 'https://api.github.com/users/' + req.query.username + '/events',
+    uri: 'https://api.github.com/users/' + req.query.username + '/events/public',
     qs: {
       access_token: req.query.access_token
     },
@@ -74,19 +74,13 @@ function commits(req, res, next) {
   request(options)
     .then(function(data) {
 
+      res.send(data.filter(hasCommit));
+
       function hasCommit(obj) {
         if (obj.payload.commits) {
           return true;
         }
       }
-
-      // data.forEach(function(e) {
-      //   if (e.payload.commits) {
-      //     console.log(!!e.payload.commits);
-      //   }
-      // })
-
-      res.send(data.filter(hasCommit));
     })
     .catch(function(err) {
       res.send(err);

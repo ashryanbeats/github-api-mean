@@ -47,6 +47,8 @@ app.controller('UserController', function($scope, $http, $cookies, UserFactory) 
 			UserFactory.getUserCommits($scope.access_token, $scope.username)
 				.then(function(data) {
 					console.log(data);
+
+					$scope.commitEvents = data;
 				});
 		}
 		else {

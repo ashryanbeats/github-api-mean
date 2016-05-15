@@ -1,13 +1,31 @@
 <section id="user">
-	<h1>Meaniscule: User</h1>
-	
-	<button class="btn" ng-click="getUserData()">Get user data</button>
-	<button class="btn" ng-click="getUserRepos()">Get user repos</button>
-	<button class="btn" ng-click="getUserCommits()">Get user commits</button>
-	<p>{{ errorMessage }}</p>
-	<p>{{name}}</p>
-	<p>{{company}}</p>
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Meaniscule: User</h1>
+			<button class="btn" ng-click="getUserData()">Get user data</button>
+			<button class="btn" ng-click="getUserRepos()">Get user repos</button>
+			<button class="btn" ng-click="getUserCommits()">Get user commits</button>
+		</div>
+	</div>
 
-	<p ng-repeat="repo in repos">{{repo.name}}</p>
+	<div class="row">
+		<div class="col-md-2">
+			<p ng-if="errorMessage">{{ errorMessage }}</p>
+			<p>{{name}}</p>
+			<p>{{company}}</p>
+		</div>
+
+		<div class="col-md-2">
+			<p ng-repeat="repo in repos">{{repo.name}}</p>
+		</div>
+
+		<div class="col-md-8">
+			<div ng-repeat="commitEvent in commitEvents">
+				<p ng-repeat="commit in commitEvent.payload.commits">
+					{{commit.message}}
+				</p>
+			</div>
+		</div>
+	</div>
 
 </section>
